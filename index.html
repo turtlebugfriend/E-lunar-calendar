@@ -534,8 +534,8 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
-                gap: 4px;
-                padding: 10px 20px;
+                gap: 2px;
+                padding: 10px 5px;
                 overflow-x: visible;
                 -webkit-overflow-scrolling: touch;
             }
@@ -544,6 +544,7 @@
                 min-width: 40px;
                 margin-right: 0;
                 padding-bottom: 0;
+                gap: 4px;
             }
             
             .day {
@@ -905,6 +906,9 @@
                     combinedContainer.scrollLeft = Math.max(0, scrollPosition);
                 }, 100);
             }
+            
+            // Regenerate daily log with new cycle length
+            generateDailyLog();
         }
         
         // Toggle daily log visibility
