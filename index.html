@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="Lunar Calendar">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🌙</text></svg>">
+    <link rel="apple-touch-icon" href="icon.png">
     <title>Lunar & Cycle Tracker</title>
     <style>
         * {
@@ -191,20 +191,17 @@
         }
         
         .combined-cycles {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 4px;
-            padding: 10px;
-            max-width: 100%;
+            overflow-x: auto;
+            padding: 10px 150px;
         }
         
         .combined-day {
             display: inline-flex;
             flex-direction: column;
             gap: 8px;
-            margin: 0;
+            margin-right: 4px;
             vertical-align: top;
+            padding-bottom: 16px;
         }
         
         .day {
@@ -534,12 +531,19 @@
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .combined-cycles {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 4px;
                 padding: 10px 20px;
+                overflow-x: visible;
                 -webkit-overflow-scrolling: touch;
             }
             
             .combined-day {
                 min-width: 40px;
+                margin-right: 0;
+                padding-bottom: 0;
             }
             
             .day {
@@ -890,6 +894,16 @@
                 }
                 
                 combinedContainer.appendChild(combinedDay);
+            }
+            
+            // Auto-scroll to center on desktop only
+            if (window.innerWidth > 768) {
+                setTimeout(() => {
+                    const dayWidth = 44;
+                    const containerWidth = combinedContainer.offsetWidth;
+                    const scrollPosition = (todayIndex * dayWidth) - (containerWidth / 2) + (dayWidth / 2);
+                    combinedContainer.scrollLeft = Math.max(0, scrollPosition);
+                }, 100);
             }
         }
         
