@@ -531,7 +531,15 @@
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .combined-cycles {
-                padding: 10px 20px;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 4px;
+                padding: 10px;
+                overflow-x: visible;
+            }
+            
+            .combined-day {
+                margin-right: 0;
             }
         }
     </style>
