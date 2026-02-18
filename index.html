@@ -533,22 +533,16 @@
             .combined-cycles {
                 display: flex;
                 flex-wrap: wrap;
-                justify-content: center;
-                gap: 2px;
-                padding: 10px 5px;
+                justify-content: space-evenly;
+                gap: 8px;
+                padding: 10px 8px;
                 overflow-x: visible;
                 -webkit-overflow-scrolling: touch;
             }
             
             .combined-day {
-                min-width: 40px;
                 margin-right: 0;
                 padding-bottom: 0;
-                gap: 4px;
-            }
-            
-            .day {
-                min-width: 40px;
             }
         }
     </style>
@@ -832,8 +826,8 @@
             
             // Determine number of days to show based on screen size
             const isMobile = window.innerWidth <= 768;
-            const totalDays = isMobile ? 15 : 35;
-            const daysBeforeToday = isMobile ? 7 : 17;
+            const totalDays = isMobile ? 15 : 30;
+            const daysBeforeToday = isMobile ? 7 : 15;
             
             let todayIndex = daysBeforeToday;
             let lastMonth = -1;
