@@ -205,7 +205,7 @@
         }
         
         .day {
-            min-width: 40px;
+            width: 40px;
             height: 60px;
             display: flex;
             flex-direction: column;
@@ -541,6 +541,12 @@
             .combined-day {
                 margin-right: 0;
             }
+            
+            .today-note-input {
+                font-size: 16px;
+                padding: 14px 16px;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -791,7 +797,7 @@
             const todaySymptom = localStorage.getItem(`dailyLog-${currentDay}`) || '';
             
             document.getElementById('currentStatus').innerHTML = `
-                <div>Today: <strong>Day ${currentDay}</strong> | You're in <strong>${currentPhaseInfo.title}</strong> | Next period in <strong>${daysUntilPeriod} days</strong></div>
+                <div>Today: <strong>Day ${currentDay}</strong> | You're in <strong>${currentPhaseInfo.title} Phase</strong> | Next period in <strong>${daysUntilPeriod} days</strong></div>
                 <div class="phase-description-inline" style="text-align: center;">${currentPhaseInfo.description}</div>
                 <input type="text" class="today-note-input" id="todayNoteTop" placeholder="Today I'm feeling..." value="${todaySymptom}">
                 <div class="haiku" style="font-family: 'Georgia', serif;">${currentPhaseInfo.haiku}</div>
@@ -823,7 +829,7 @@
             
             // Determine number of days to show based on screen size
             const isMobile = window.innerWidth <= 768;
-            const totalDays = isMobile ? 14 : 30;
+            const totalDays = isMobile ? 15 : 30;
             const daysBeforeToday = 7;
             
             let todayIndex = daysBeforeToday;
