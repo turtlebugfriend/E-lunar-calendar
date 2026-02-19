@@ -65,14 +65,14 @@
         .phase-description-inline {
             font-size: 14px;
             font-style: italic;
-            margin-top: 8px;
+            margin-top: 12px;
             opacity: 0.95;
         }
         
         .haiku {
             font-size: 14px;
             font-style: italic;
-            margin-top: 12px;
+            margin-top: 16px;
             opacity: 0.9;
             line-height: 1.5;
         }
@@ -80,7 +80,7 @@
         .today-note-input {
             width: 100%;
             max-width: 600px;
-            margin: 12px auto 0;
+            margin: 16px auto 0;
             padding: 10px 14px;
             border: 1px solid rgba(255,255,255,0.3);
             border-radius: 8px;
@@ -823,8 +823,8 @@
             
             // Determine number of days to show based on screen size
             const isMobile = window.innerWidth <= 768;
-            const totalDays = isMobile ? 15 : 30;
-            const daysBeforeToday = isMobile ? 7 : 15;
+            const totalDays = isMobile ? 14 : 30;
+            const daysBeforeToday = 7;
             
             let todayIndex = daysBeforeToday;
             let lastMonth = -1;
@@ -975,10 +975,6 @@
         // If we have saved settings, automatically update the timeline
         if (hasSettings && document.getElementById('lastPeriodDate').value) {
             updateCycles();
-        } else {
-            // Set a default date (Jan 26, 2025 - 14 days ago, for ovulation timing)
-            const defaultDate = new Date('2025-01-26');
-            document.getElementById('lastPeriodDate').value = defaultDate.toISOString().split('T')[0];
         }
         
         // Generate daily log
