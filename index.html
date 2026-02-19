@@ -191,11 +191,8 @@
         }
         
         .combined-cycles {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-            padding: 20px;
-            justify-items: center;
+            overflow-x: auto;
+            padding: 10px 150px;
         }
         
         .combined-day {
@@ -208,7 +205,7 @@
         }
         
         .day {
-            width: 40px;
+            min-width: 40px;
             height: 60px;
             display: flex;
             flex-direction: column;
@@ -534,15 +531,15 @@
         /* Mobile optimizations */
         @media (max-width: 768px) {
             .combined-cycles {
+                display: grid;
                 grid-template-columns: repeat(5, 1fr);
                 gap: 4px;
                 padding: 10px;
+                overflow-x: visible;
             }
             
-            .today-note-input {
-                font-size: 16px;
-                padding: 14px 16px;
-                max-width: 100%;
+            .combined-day {
+                margin-right: 0;
             }
         }
     </style>
@@ -826,8 +823,8 @@
             
             // Determine number of days to show based on screen size
             const isMobile = window.innerWidth <= 768;
-            const totalDays = isMobile ? 15 : 21;
-            const daysBeforeToday = isMobile ? 7 : 10;
+            const totalDays = isMobile ? 14 : 30;
+            const daysBeforeToday = 7;
             
             let todayIndex = daysBeforeToday;
             let lastMonth = -1;
@@ -893,6 +890,16 @@
                 }
                 
                 combinedContainer.appendChild(combinedDay);
+            }
+            
+            // Auto-scroll to center on desktop only
+            if (window.innerWidth > 768) {
+                setTimeout(() => {
+                    const dayWidth = 44;
+                    const containerWidth = combinedContainer.offsetWidth;
+                    const scrollPosition = (todayIndex * dayWidth) - (containerWidth / 2) + (dayWidth / 2);
+                    combinedContainer.scrollLeft = Math.max(0, scrollPosition);
+                }, 100);
             }
             
             // Regenerate daily log with new cycle length
